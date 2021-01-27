@@ -1,0 +1,103 @@
+\ProvidesPackage{../style/summaryStyle}
+
+% general packages
+\usepackage[T2A]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{indentfirst}
+\usepackage[left=1.5cm,right=1.5cm,top=3cm,bottom=2cm]{geometry}
+
+% modular packages
+\usepackage{subfiles}
+
+% math packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[makeroom]{cancel}
+% math setup
+\numberwithin{equation}{section}
+
+% special packages
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{array}
+\usepackage{xcolor}
+
+% packages for images
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{wrapfig}
+
+% page style
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\fancyhead[L]{\rightmark}
+\fancyhead[R]{}
+
+% hypepsetup colors
+\hypersetup{
+    unicode=true,
+    linkcolor=blue,
+    citecolor=green,
+    filecolor=magenta,
+    urlcolor=cyan
+}
+
+% setting hyphenation
+%\usepackage{ragged2e}
+%\righthyphen=7 
+%\righthyphen\=5
+%\hyphenchar\font=-1
+%\hyphenpenalty=1000
+%\justifying
+
+% summary titlepage environment
+\newsavebox{\boxOneReviewsTitlepage}
+\newenvironment{summarytitlepage}[3]
+{
+    \thispagestyle{empty}
+    \centering
+    \noindent\rule{\linewidth}{0.2pt}
+    \noindent{\scshape\LARGE Радиофизика \par}
+    \noindent\rule{\linewidth}{0.2pt}
+    \vspace{1.0cm}
+    \par\centering
+    \includegraphics[scale=0.7]{../style/logo/logo.pdf} % просто картинка из интернета, надо изменить!
+    \par
+    \vspace{2.0cm}
+    {\scshape\Large \ignorespaces #1 \par}
+    \vspace{2.0cm}
+    {\huge\bfseries \ignorespaces #2 \par}
+    \vspace{0.5cm}
+    \sbox\boxOneReviewsTitlepage{{\Large\itshape \ignorespaces #3 \par}}
+    \noindent\ignorespaces
+}
+{
+    \noindent\par\vfill
+    \begin{center}
+        \noindent\usebox{\boxOneReviewsTitlepage}
+        \vspace{3.0cm}
+    \end{center}
+    \newpage
+}
+
+\newcommand{\intinf}{\int\limits_{-\infty}^{\infty}}
+\newcommand{\jo}{j\omega}
+% \renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+% \renewcommand{\theequation}{\arabic{chapter}.\arabic{equation}}
+
+\newcommand{\twoitemscolumn}[2]{%
+    \noindent%
+    {\setlength\multicolsep{0pt}%
+    \begin{multicols}{2}%
+    \begin{itemize}[noitemsep,topsep=0pt,leftmargin=*]%
+        \item #1
+        \null\vfill\columnbreak
+        \item #2
+        \null\vfill
+    \end{itemize}
+    \end{multicols}}
+}

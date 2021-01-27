@@ -1,0 +1,14 @@
+# core latex/pdflatex auxiliary files:
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.txt
+
+# pdf files:
+*.pdf
+
+# backup files:
+*.bak
+
