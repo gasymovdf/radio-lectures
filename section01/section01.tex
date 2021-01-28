@@ -9,15 +9,15 @@
 $$i = i(t),~u=u(t),~\Phi = \Phi(t)~\text{и т.д.}$$
 
 В окружающем пространстве имеется электромагнитное поле в виде электромагнитной волны, возникающей при переменных токах, зарядах и др. Волны несут информацию об "изменениях"\ в соседних точках цепи, что описывается функциями вида
-$$f = f(t - \frac{x}{v}),$$
+$$f = f\bigg(t - \dfrac{x}{v}\bigg),$$
 где $v$ --- скорость электромагнитной волны в данной среде, $x$ --- пространственная координата. Пусть $\tau_0$ --- характерное время изменения сигнала. Тогда, если $x~\ll~v\tau_0$ ($0\leqslant x \leqslant L$), во всех точках приближенно можно считать функцию $f(t, x)$ одинаковой, т.е. независимой в данный момент момент $t$ от координаты $x$: 
 $$f(t, x) \bigg|_{x=0} \simeq f(t, x)\bigg|_{x=vt}\simeq f(t).$$
 
 Другими словами, мы пренебрегаем эффектами запаздывания. Если $L$ --- характерный размер цепи, тогда потребуется:
-$$x_{max} = L \ll v\tau_0 = \lambda~\text{(для гармонического сигнала: }~\tau_0=\frac{2\pi}{\omega})$$
+$$x_{max} = L \ll v\tau_0 = \lambda~\text{(для гармонического сигнала: }~\tau_0=\dfrac{2\pi}{\omega})$$
 и "условие квазистационарности": 
 \begin{center}
-$\boxed{L \ll \lambda}$ или $\frac{\tau}{\tau_0} \ll 1$,
+$\boxed{L \ll \lambda}$ или $\dfrac{\tau}{\tau_0} \ll 1$,
 \end{center}
 где $\tau$ --- время передачи информации.
 
@@ -28,50 +28,287 @@ $\boxed{L \ll \lambda}$ или $\frac{\tau}{\tau_0} \ll 1$,
 Общим свойством простых сосредоточенных цепей является "линейность", т.е. подчинение принципу суперпозиции: реакция цепи на суммарный сигнал равна сумме реакций на каждый из сигналов в отдельности. Элементами таких цепей будут: сопротивление (резисторы), емкость (конденсаторы), индуктивность (катушки).
 
 \begin{enumerate}
-    \item Сопротивление $R$. % картиночка
+    \item Сопротивление $R$.
     
-    Также вводится понятие проводимости $G = \frac{1}{R}$. Размерности $R = [\text{Ом}],~G = [\text{Ом}^{-1}]$. Связь тока, напряжения и сопротивления (закон Ома): $i=\frac{U}{R}=GU$. $P=Ui$ --- мощность. $\Delta W_R = \int\limits_{0}^{t} Ui dt$ --- энергия, выделяемая на резисторе за время от $0$ до $t$.
+\begin{minipage}{6cm}
+\centering
+\includegraphics[scale=0.7]{../section01/images/resistor/resistor.png} % нужна картинка
+\end{minipage} \hfill   
+\begin{minipage}{11cm}
+Также вводится понятие проводимости $G = \dfrac{1}{R}$. Размерности $R = [\text{Ом}],~G = [\text{Ом}^{-1}]$. Связь тока, напряжения и сопротивления (закон Ома): $i=\dfrac{U}{R}=GU$. $P=Ui$ --- мощность. $\Delta W_R = \displaystyle \int \limits_{0}^{t} Ui \, dt$ --- энергия, выделяемая на резисторе за время от $0$ до $t$.
+\end{minipage}
     
-    По отношению к реальным сопротивлениям --- это идеализация. Предполагается, что нет зависимостей $R(i)$ или $R(U)$ (в ином случае можно говорить о локальных $R$ и $G$ в окрестности точки $i = const$, их называют "дифференциальными"\ характеристиками: $R_\partial = \frac{dU}{di}\bigg|_{i=0},~G_\partial = R_\partial^{-1}$). На практике зависимость $R(i)$ может возникнуть, благодаря температурной вариации сопротивления $R(T)$: рост тока сопровождается нагревом и изменением $R$. Обычно на резисторе указывается предельно допустимая мощность, ниже которой "линейность"\ c заданной точностью гарантируется.
+    По отношению к реальным сопротивлениям --- это идеализация. Предполагается, что нет зависимостей $R(i)$ или $R(U)$ (в ином случае можно говорить о локальных $R$ и $G$ в окрестности точки $i = \text{const}$, их называют "дифференциальными"\ характеристиками: $R_\partial = \dfrac{dU}{di}\bigg|_{i=0},~G_\partial = R_\partial^{-1}$). На практике зависимость $R(i)$ может возникнуть, благодаря температурной вариации сопротивления $R(T)$: рост тока сопровождается нагревом и изменением $R$. Обычно на резисторе указывается предельно допустимая мощность, ниже которой "линейность"\ c заданной точностью гарантируется.
     
     \item Ёмкость $C$. 
+
+\begin{minipage}{6cm}
+\centering
+\includegraphics[scale=0.7]{../section01/images/capacitor/capacitor.png} % нужна картинка
+\end{minipage} \hfill   
+\begin{minipage}{11cm}
+    Заряд $q = CU_C$. "Ток смещения": $i = \dfrac{dq}{dt} = C \dfrac{dU_C}{dt}$. Энергия, выделяемая за время от $0$ до $t$: $W_C = \dfrac{1}{C} \displaystyle \int\limits_{0}^{t} i \, dt$. Вариация энергии: $\Delta W_C = W_C(t) - W(0) = \dfrac{C}{2} [U_C^2(t) - U_C^2(0)]$.
+\end{minipage}
+
+
     
-    Заряд $q = CU_C$. "Ток смещения": $i = \frac{dq}{dt} = C \frac{dU_C}{dt}$. Энергия, выделяемая за время от $0$ до $t$: $W_C = \frac{1}{C} \int\limits_{0}^{t} i dt$. Вариация энергии: $\Delta W_C = W_C(t) - W(0) = \frac{C}{2} [U_C^2(t) - U_C^2(0)]$.
+    Здесь также предполагается $C = \text{const}$, т.е. нет зависимости $C(U)$. Примеры, когда это не выполняется: конденсатор с сегнетоэлектриком, pn-переход и др. Если $C = C(U)$, то при $U = U_0 = \text{\text{const}}$ вводят $C_\partial = \dfrac{dq}{dU}$. 
     
-    Здесь также предполагается $C = const$, т.е. нет зависимости $C(U)$. Примеры, когда это не выполняется: конденсатор с сегнетоэлектриком, pn-переход и др. Если $C = C(U)$, то при $U = U_0 = const$ вводят $C_\partial = \frac{dq}{dU}$. 
-    
-    $\varepsilon = \frac{\varepsilon(0)}{1 + \bigg(\frac{\varepsilon(0)}{4\pi}\bigg)^3 BE^2}$ --- постоянная материала, где $B = const$, $E$ --- электрическое поле. Тогда, $C_U = \frac{C(0)}{1 + bU^2}$. В линейных системах эти эффекты опускаются. 
+\begin{minipage}{6cm}
+\centering
+\includegraphics[scale=0.7]{../section01/images/capacitor_plot/capacitor_plot.png} % нужна картинка
+\end{minipage} \hfill   
+\begin{minipage}{11cm}
+    $\varepsilon = \dfrac{\varepsilon(0)}{1 + \bigg(\dfrac{\varepsilon(0)}{4\pi}\bigg)^3 BE^2}$ --- постоянная материала, где $B = \text{\text{const}}$, $E$ --- электрическое поле. Тогда, $C_U = \dfrac{C(0)}{1 + bU^2}$. В линейных системах эти эффекты опускаются. 
+\end{minipage}
     
     \item Индуктивность $L$.
     
-    Магнитный поток $\Phi = Li$. Напряжение $U = \frac{d\Phi}{dt} = L \frac{di}{dt}$. Выделяемая энергия на элементе $W_L = \frac{1}{2} Li^2$. Вариация энергии $\Delta W_L = \frac{L}{2} [i^2(t) - i^2(0)]$.
+\begin{minipage}{6cm}
+\centering
+\includegraphics[scale=0.6]{../section01/images/inductance/inductance.png} % нужна картинка
+\end{minipage} \hfill   
+\begin{minipage}{11cm}
+    Магнитный поток $\Phi = Li$. Напряжение $U = \dfrac{d\Phi}{dt} = L \dfrac{di}{dt}$. Выделяемая энергия на элементе $W_L = \dfrac{1}{2} Li^2$. Вариация энергии $\Delta W_L = \dfrac{L}{2} [i^2(t) - i^2(0)]$.
+\end{minipage}
     
-    Для этого элемента также возможно $L = L(i)$. Например, для катушки с сердечником $\mu = \mu(i) \Rightarrow L_\partial = \frac{d\Phi}{di}$.
+    Для этого элемента также возможно $L = L(i)$. Например, для катушки с сердечником $\mu = \mu(i) \Rightarrow L_\partial = \dfrac{d\Phi}{di}$.
 \end{enumerate}
 
 \subsection{Источники энергии.}
 
-Это тоже элементы радиотехнических цепей: постоянные(батареи, аккумуляторы), переменные(генераторы). Эквивалентная схема источника должна содержать его внутреннее сопротивление. 
-
+Это тоже элементы радиотехнических цепей: постоянные(батареи, аккумуляторы), переменные(генераторы). Эквивалентная схема источника должна содержать его внутреннее сопротивление.
+ 
+\begin{minipage}{6cm}
+\centering
+\includegraphics[scale=0.7]{../section01/images/not_ideal_voltage/not_ideal_voltage.png} % нужна картинка
+\end{minipage} \hfill   
+\begin{minipage}{11cm}
 Здесь известны два предельных случая ("две абстракции"\ или "идеализации"):
+\end{minipage}
 
 \begin{enumerate}
     \item Генератор тока (идеальный источник тока).
-        Внутреннее сопротивление велико по сравнению с сопротивлением внешней цепи (нагрузки): $R_i \gg R (G_i \rightarrow 0)$. Тогда, $i = \frac{U}{R_i + R} \simeq \frac{U}{R_i} = const$ --- т.е. ток не зависит от $R$! (источник снабжает нагрузку фиксированным током). 
+        Внутреннее сопротивление велико по сравнению с сопротивлением внешней цепи (нагрузки): $R_i \gg R (G_i \rightarrow 0)$. Тогда, $i = \dfrac{U}{R_i + R} \simeq \dfrac{U}{R_i} = \text{const}$ --- т.е. ток не зависит от $R$! (источник снабжает нагрузку фиксированным током). 
     
     \item Генератор напряжения (идеальный источник напряжения).
-     Внутреннее сопротивление мало по сравнению с сопротивлением внешней цепи: $R_i \ll R (R_i \rightarrow 0)$. Тогда, $i \simeq \frac{U}{R}$ или $U \simeq iR = U_0$ (напряжение, создаваемое во внешней цепи не зависит от нагрузки).  
+     Внутреннее сопротивление мало по сравнению с сопротивлением внешней цепи: $R_i \ll R (R_i \rightarrow 0)$. Тогда, $i \simeq \dfrac{U}{R}$ или $U \simeq iR = U_0$ (напряжение, создаваемое во внешней цепи не зависит от нагрузки).  
 \end{enumerate}
 
 Реальные источники только приближенно могут быть отнесены к одному из этих генераторов.
 
 \subsection{Уравнения простейших линейных цепей.}
 
+Рассмотрим подробно $RC$-цепь.
+
+\begin{minipage}{6cm}
+\centering
+\includegraphics[scale=0.6]{../section01/images/rc_simple/rc_simple.png} % нужна картинка
+\end{minipage} \hfill   
+\begin{minipage}{9cm}
+Пусть~входной сигнал содержит постоянную и~переменную составляющую: $e(t) = U_0 +~U(t)$. Тогда: $e(t) = U_C + U_R \Rightarrow U_C = \dfrac{1}{C} \displaystyle \int i \, dt,\\U_R = iR,\quad i=\dfrac{dq}{dt} = C \dfrac{dU_C}{dt} \Rightarrow\\e(t) = U_C + RC\dfrac{dU_C}{dt}$ --- дифференциальное уравнение относительно $U_C$. 
+\end{minipage}
+
+Нас интересует вид выходного сигнала (обозначения: $RC = \tau_0,~\dfrac{t}{\tau_0} = \tau$). Решать следует обычными методами из теории дифференциальных уравнений. % в книге \tau потом нигде не используется, я записал уравнения с ней.
+
+Домножим уравнение на $e^\tau$:
+$$e(t) e^\tau = U_C e^\tau + \tau_0 e^\tau \dfrac{dU_c}{d\tau} = \dfrac{d}{dt}\bigg( \tau_0 U_C e^\tau \bigg),$$
+$$d \bigg( \tau_0 U_C e^\tau \bigg) = e(t) e^\tau dt.$$
+
+Простым интегрированием и переносом множителей получим: 
+$$U_C = \frac{1}{\tau_0} e^{-\tau} \displaystyle \int\limits_0^t e(t) e^{\tau} dt +  \text{const} \cdot e^{-\tau}$$
+
+Добавим начальные условия, например: $t = 0,~U_C = 0$, тогда $\text{const} = 0$.
+
+\underline{На входе постоянный сигнал $e(t) = U_0$.}
+
+\begin{minipage}{6cm}
+\centering % я убрал картинку с постоянным напряжением, т.к. и так очевидно как оно выглядит
+\includegraphics[scale=0.6]{../section01/images/U_C_plot/U_C_plot.png} % нужна картинка
+\end{minipage} \hfill   
+\begin{minipage}{9cm}
+Очевидно, $U_R = e(t) - U_C(t)$, из формулы получим $U_C = U_0 (1 - e^{-\tau}) \rightarrow U_R = U_0 e^{-\tau}$. Рассмотрим здесь 2 области: 
+
+\begin{enumerate}
+\item $t \ll \tau_0,~U_C \sim t,~U_R \sim U_0 \dfrac{t}{RC}$. Это "область интегрирования", сигнал снимается с ёмкости. Видно запаздывание напряжения по откошенной по току на время $\tau_0 = RC$.
+\end{enumerate}
+\end{minipage}
+
+\begin{minipage}{6cm}
+\centering
+\includegraphics[scale=0.6]{../section01/images/U_R_plot/U_R_plot.png} % нужна картинка
+\end{minipage} \hfill   
+\begin{minipage}{9cm}
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item $t \gg \tau_0,~U_R = U_0 e^{-\tau} \simeq 0$. Это "область дифференцирования", сигнал снимается с сопротивления. Для гармонического сигнала это приводит к разности фаз $\sim \pi / 2$ между $U_{\text{вх}}$ и $U_{\text{вых}}$. 
+\end{enumerate}
+\end{minipage}
+
+Графики $U_C(t)$ и $U_R(t)$ показывают, что можно использовать радиотехнические цепи для выполнения математических операций интегрирования и дифференцирования (в аналоговой форме). Все зависит от соотношения длительности входного сигнала и постоянной времени цепи $\tau_0$:
+
+\begin{enumerate}
+\item Дифференцируемая $RC$-цепочка.
+
+\begin{minipage}{6cm}
+% \centering
+\includegraphics[scale=0.5]{../section01/images/R_C_derivate/R_C_derivate.png} % нужна картинка
+\end{minipage} \hfill   
+\begin{minipage}{9cm}
+$U_{\text{вых}} = U_R = R \cdot C\dfrac{dU_c}{dt} = RC\bigg(\dfrac{dU_\text{вх}}{dt} - \dfrac{dU_R}{dt}\bigg)$. Если $\dfrac{dU_R}{dt} \ll \dfrac{dU}{dt}$, тогда $U_\text{вых} = U_R \simeq \tau_0 \dfrac{dU}{dt} \Rightarrow$ цепочка будет дифференцировать сигнал.
+\end{minipage}
+
+$$\dfrac{dU_R}{dt} \ll \dfrac{dU}{dt} \sim \dfrac{U_R}{RC},~\text{т.е.}~\dfrac{RC}{U_R} \dfrac{dU_R}{dt} \ll 1~\text{или}~\boxed{\dfrac{\tau_0}{\tau_C} \ll 1},$$
+где $\dfrac{1}{U_R} \dfrac{dU_R}{dt} \sim \frac{1}{\tau_C}$ --- обратная длительность сигнала.
+
+\item Интегрирующая $RC$-цепочка.
+
+\begin{minipage}{6cm}
+\centering
+\includegraphics[scale=0.6]{../section01/images/R_C_integrate/R_C_integrate.png} % нужна картинка
+\end{minipage} \hfill   
+\begin{minipage}{9cm}
+$U = \dfrac{1}{RC} \displaystyle \int\limits_0^t U \, dt = U \dfrac{t}{RC} \Rightarrow$ цепочка интегрирует входной сигнал. Для интегрирующей цепочки~$\tau_0 \gg \tau_C$.
+\end{minipage}
+\end{enumerate}
+
+Для гармонического сигнала характерное время $\tau_C \simeq \dfrac{2\pi}{\omega}$, условия дифференцируемости и~интегрируемости переписываются в виде:
+$$\text{дифф. цепь} \quad \tau_0 \ll \tau_C \rightarrow \dfrac{\omega RC}{2\pi} \gg 1;$$
+$$\text{интегр. цепь} \quad \tau_0 \gg \tau_C \rightarrow \dfrac{\omega RC}{2\pi} \ll 1.$$
+
+\textbf{Упражнение 1.} Построить аналогичные цепочки из элементов $L$ и $C$ и рассчитать реакцию на ступенчатый импульс.
+
+Общий вывод следующий: Видно, что уже с помощью линейных инерционных элементов радиотехнических цепей можно выполнять существенные операции математического анализа. Добавление нелинейных элементов, конечно, расширит возможности. Здесь ключ к пониманию принципов построения аналоговых вычислительных машин.
+
+Метод анализа процессов в радиотехнических цепях с помощью решения дифференциальных уравнений полон (описывает как стационарные состояния, так и переходные режимы), но не слишком прост. На практике техниками, радиоинженерами, радиолюбителями и др. используется (без строгого обоснования) "метод комплексных амплитуд"{} (МКА).
+ 
 \subsection{Метод комплексных амплитуд (МКА).}
+
+Качественное обоснование метода следующее: гармонический сигнал представляется в~комплексной форме: 
+$$U(t) = U_0 \cos(\omega t + \varphi) = \dfrac{U_0}{2}(e^{j(\omega t + \varphi)} + e^{-j(\omega t + \varphi)}) = \widetilde{U} e^{\jo t} + \text{к.с.},$$
+где $\widetilde{U} = \dfrac{U_0}{2} e^{j \varphi}$ --- "комплексная амплитуда"{} сигнала.
+
+В~силу принципа суперпозиции можно рассчитать реакцию цепи на~"комплексный сигнал"{}~$\widetilde{U} e^{\jo t}$ и~к~результату прибавить комплексно-сопряженное решение (если нас интересует временная зависимость выходного напряжения в явной форме; часто, однако, этого не~требуется). Если это принять, то отпадает необходимость в~решении дифференциальных уравнений при~расчете цепей. Действительно: дифференциальные соотношения при~этом превращаются в~алгебраические. Введём напряжение сигнала $U = \widetilde{U} e^{\jo t}$. Тогда рассмотрим: 
+\begin{enumerate}
+\item Ток через~резистор: $i = \dfrac{U}{R} = \widetilde{i}_0 e^{\jo t},~\widetilde{i}_0 = \dfrac{\widetilde{U}}{R}$ --- комплексная амплитуда тока, фаза не~изменилась;
+
+\item Ток через ёмкость: $i = C \dfrac{dU_C}{dt} = \jo C \widetilde{U} e^{\jo t} = \dfrac{\widetilde{U}}{1/(\omega C)} e^{j\bigg(\omega t + \dfrac{\pi}{2}\bigg)}$ --- ток через~ёмкость опережает напряжение на~$\varphi = \dfrac{\pi}{2}$. Тогда, ток~будет равен:~$\widetilde{i} = \dfrac{\widetilde{U}}{|X_C|}$, где~$X_C = \dfrac{1}{\jo C}$ --- комплексное сопротивление ёмкости. 
+
+При~$\omega \rightarrow 0$ получим $X_C \rightarrow \infty$ --- постоянный ток не~течёт. 
+
+При~$\omega \rightarrow \infty,~|X_C| \rightarrow 0$ --- короткое замыкание на~высоких частотах.
+
+\item Ток через~индуктивность: $U = \widetilde{U} e^{\jo t}, i = \frac{\Phi}{L} = \displaystyle \int U \, dt \Rightarrow i = \dfrac{1}{\jo L \widetilde{U} e^{\jo t}} = \dfrac{\widetilde{U}}{\omega L} e^{j\bigg(\omega t - \dfrac{\pi}{2}\bigg)}$ --- ток через~индуктивность отстаёт от~напряжения на~$\varphi = \dfrac{\pi}{2}$. Тогда, ток будет~равен:~$\widetilde{i}~=~\dfrac{\widetilde{U}}{|X_L|}$, где $X_L = \jo L \rightarrow |X_L| = \omega L$ --- комплексное сопротивление индуктивности.
+
+При~$\omega \rightarrow 0$ получим $i \rightarrow \infty$ --- отсутствие сопротивления постоянному току. 
+
+При~$\omega \rightarrow \infty,~\widetilde{i} \rightarrow 0$ --- "разрыв"{} цепи на~высоких частотах.
+
+\end{enumerate}
 
 \subsection{Расчет цепей методом комплексных амплитуд.}
 
+Исследуем методом комплексных амплитуд $RC$-цепь.
+
+\begin{minipage}{6cm}
+\centering
+\includegraphics[scale=0.7]{../section01/images/RC_MKA/RC_MKA.png} % нужна картинка
+\end{minipage} \hfill   
+\begin{minipage}{10cm}
+Напряжение $U = U_C + RC \dfrac{dU_C}{dt}$ \textit{(см. п.4)}.
+
+Представим входной сигнал в комплексной форме $U(t) = U_0 e^{\jo t}$ ($U_0$ --- действительная амплитуда), $U_C = \widetilde{U_C} e^{\jo t}$.
+
+Подстановка даёт $U_0 = \widetilde{U_C} + \jo RC \widetilde{U_C}$ (т.е. дифференциальное уравнение перешло в алгебраическое). Выражая, получим: 
+\end{minipage}
+
+$$\widetilde{U_C} = \dfrac{U_0}{1 + \jo RC}, \quad \widetilde{U_R} = U_0 - \widetilde{U_C} = \dfrac{\jo RC U_0}{1 + \jo RC}.$$
+
+Эти же формулы можно получить, используя закон Ома и законы Кирхгофа с $R_C \rightarrow X_C = \dfrac{1}{\jo C}$: 
+$$\widetilde{i_0} = \dfrac{U_0}{R + \dfrac{1}{\jo C}}, \quad \widetilde{U_R} = \widetilde{i_0} R = \dfrac{\jo RC U_0}{1 + \jo RC}.$$
+
+Проанализируем результат: 
+$$\widetilde{U_R} = \dfrac{\jo RC}{1 + \jo RC} U_0~\text{выразим в виде:}~\widetilde{U_R} = \dfrac{U_0}{|Z(\omega)|}e^{j \varphi},$$
+$$|Z(\omega)| = \bigg| \dfrac{\jo RC}{1 + \jo RC} \bigg| = \dfrac{\omega RC}{\sqrt{1 + (\omega RC)^2}}$$
+
+\begin{minipage}{6cm}
+\centering
+\includegraphics[scale=0.7]{../section01/images/Z_o_plot/Z_o_plot.png} % нужна картинка
+\end{minipage} \hfill   
+\begin{minipage}{10cm}
+$|Z(\jo)| = |K(\jo)| = \bigg| \dfrac{\widetilde{U_R}}{U_0} \bigg|$.
+
+Получаем "завал"{} коэффициента предачи на низких частотах.
+\end{minipage}
+
+"Коэффициент передачи"{} $|K(\jo)|$, он же --- "Амлитудно-чатотная характеристика"{} радиотехнической цепи. 
+
+Также, существует "фазо-частотная характеристика"{} $\varphi(\omega)$: 
+$$\tan \varphi(\omega) = \dfrac{\text{Im} Z(\jo)}{\text{Re} Z(\jo)},$$
+$$Z(\omega) = \dfrac{\jo RC}{1 + \jo RC} \quad \rightarrow \quad \varphi(\omega) = \arctan \bigg( \dfrac{1}{\omega RC} \bigg)$$
+
+\begin{minipage}{6cm}
+\centering
+\includegraphics[scale=0.7]{../section01/images/phi_o_plot/phi_o_plot.png} % нужна картинка
+\end{minipage} \hfill   
+\begin{minipage}{10cm}
+На высоких частотах фазовое "искажение"{} исчезает.
+\end{minipage}
+
+Таким образом, мы провели "частотный анализ"{} прохождения переменного сигнала через $RC$-цепочку.
+
+\textbf{Упражнение 2.} Выполнить тоже самое для сигнала, снимаемого с емкости, т.е. изучить $U_C$.
+
+В общем случае, для произвольной линейной цепи, следует ожидать, что:
+$$\widetilde{U}_\text{вых} (\jo) = \widetilde{U}_\text{вх} \widetilde{K}(\jo); \quad \widetilde{K}(\jo) = |\widetilde{K}(\jo)| e^{j \varphi(\omega)},$$
+т.е. прохождения сигнала через радиотехническую цепь описывается на языке, типичном для "задачи рассеяния".
+
 \subsection{Метод преобразования Лапласа. Расчёт переходных режимов.}
+
+Данный способ более мощный, чем МКА и позволяет описывать не только стационарные, но и переходные процессы в радиотехнических цепях.
+
+Покажем метод Лапласа на примере $RC$-цепи \textit{(см. п.6)}:
+$$e(t) = R i(t) + \dfrac{1}{C} \displaystyle \int i(t) \, dt.$$
+Формальное определение преобразования Лапласа: 
+$$f(t) \rightarrow \widehat{f} (p) = \displaystyle \int\limits_0^\infty f(t) e^{-pt} \, dt$$
+Обратным преобразованием Лапласа называется: 
+$$\widehat{f}(p) \rightarrow f(t) = \dfrac{1}{2\pi i} \displaystyle \lim\limits_{r\rightarrow \infty} \int\limits_{\delta - ir}^{\delta + ir} f(p) e^{-pt} \, dp,$$
+параметр $p = \delta + i\omega$ --- комплексное число.
+
+Существуют таблицы $f(t) \leftrightarrows \widehat{f}(p)$ для типичных функций. Кроме того, известны свойства преобразования Лапласа: 
+$$\alpha f_1(t) + \beta f_2(t) \Rightarrow \alpha \widehat{f_1}(p) + \beta \widehat{f_2}(p)$$
+$$\dot{f(t)} \Rightarrow p \widehat{f}(p) - f(0+0)$$
+$$\displaystyle \int\limits_0^\infty f(t) dt \Rightarrow \dfrac{f(p)}{p}$$
+$$f(at) \Rightarrow \dfrac{1}{a}\widehat{f}(\dfrac{p}{a}),~a>0$$
+$$f(t-b) \Rightarrow r^{bp} \widehat{f}(p)~\text{и др.}$$
+После преобразования уравнения $RC$-цепи получим: 
+$$\widehat{e}(p) = \bigg(R + \dfrac{1}{pC}\bigg) \widehat{i}(p),~ Z_C(p) = \dfrac{1}{pC}.$$
+Для постоянного тока:
+
+\begin{equation*}
+e(t) = 
+ \begin{cases}
+   u_0, &t \geq 0\quad\quad \longrightarrow \quad \widehat{e}(p) = \dfrac{u_0}{p} \\ 
+   0, &t < 0
+ \end{cases}
+\end{equation*}
+
+Тогда:
+$$\widehat{i}(p) = \dfrac{\widehat{e}(p)}{R + \dfrac{1}{pC}},$$
+$$\widehat{U_R} = R\widehat{i}(p) = \dfrac{u_0}{p + \dfrac{1}{\tau_0}},~\tau_0 = RC,$$
+$$\widehat{U_C} = Z_C(p) \widehat{i}(p) = \dfrac{u_0}{p\tau_0 (P + \dfrac{1}{\tau_0})}$$
+
+Из обратного преобразования Лапласа (по таблицам) получим: 
+$$U_R = U_0 e^{-t/\tau_0}, \quad U_C = U_0 (1 - e^{-t/\tau_0}) \textit{см. п.4}.$$
+Сейчас можно ввести понятие "передаточной функции"{} $H(p)$: 
+$$\widehat{U_R} = H_R \widehat{e(p)}~\Rightarrow~H_R(p) = \dfrac{\widehat{U_R}}{\widehat{e}};$$
+$$H_R(p) = \dfrac{p}{p + \dfrac{1}{\tau_0}}, \quad p = \delta + \jo.$$
+При $\delta \rightarrow 0$, $H_R$ переходит в частотную характеристику \textit{(см. п.6)}.
+
+$$H_R (\jo) = \dfrac{\widehat{U}_R(\jo)}{\widehat{e}(\jo)} = \widetilde{K_R} (\jo) = \dfrac{\jo \tau_0}{1 + \jo \tau_0}\rightarrow \jo \tau_0~(\text{для дифф. цепи, т.к. } \omega \tau_0 \ll 1;$$
+$$H_C (\jo) = \dfrac{\widehat{U}_C(\jo)}{\widehat{e}(\jo)} = \widetilde{K_C} (\jo) = \dfrac{1}{1 + \jo \tau_0} \rightarrow \frac{1}{\jo \tau_0}~(\text{для интегр. цепи, т.к. } \omega \tau_0 \gg 1.$$
+
+\textbf{Упражнение 3.} Получите аналогичные выражения для $LC$-цепи.
 
 \subsection{Последовательный колебательный контур.}
 
