@@ -312,9 +312,135 @@ $$H_C (\jo) = \dfrac{\widehat{U}_C(\jo)}{\widehat{e}(\jo)} = \widetilde{K_C} (\j
 
 \subsection{Последовательный колебательный контур.}
 
+\begin{minipage}{6cm}
+\centering
+\includegraphics[scale=0.7]{../section01/images/RLC_lin/RLC_lin.png} % нужна картинка
+\end{minipage} \hfill   
+\begin{minipage}{10cm}
+Пусть $U(t) = U_0 e^{\jo t}$ (МКА).
+Раскроем напряжение по всем элементам (т.е. запишем "уравнение движения"):
+$$L \dfrac{di}{dt} + i r + \dfrac{1}{C} \displaystyle \int i \, dt = U.$$
+\end{minipage}
+
+Найдём решение в виде, $i = \widetilde{i} e^{\jo t}$ и получим:
+$$\widetilde{i} = \dfrac{U_0}{r + \jo L + \dfrac{1}{\jo C}} = \dfrac{U_0}{r + j (\omega L - \dfrac{1}{\omega C})} = \dfrac{U_0}{r + jX},$$
+где $X = \omega L - \dfrac{1}{\omega C} = \dfrac{\omega^2 LC - 1}{\omega C}$ --- реактивная часть сопротивления контура (для $X = 0 \Rightarrow \omega~=~\omega_0~=~\dfrac{1}{\sqrt{LC}}$). Значит, при частоте $\omega = \omega_0$ ток достигает максимума $|i|_{max} = \dfrac{U_0}{r}$, т.е. амплитуда тока в контуре такова, что $L$ и $C$ как будто отсутствуют. Объясним причину этого явления.
+
+Исследуем напряжения на индуктивности и на конденсаторе при $\omega = \omega_0$:
+
+$$U_L = \jo L \cdot \dfrac{U_0}{r} e^{\jo t} \bigg|_{\omega = \omega_0} = \dfrac{1}{r} \sqrt{\dfrac{L}{C}} U_0 e^{j(\omega t + \dfrac{\pi}{2})}, \quad \dfrac{\omega_0 L}{r} = \dfrac{1}{r} \sqrt{\dfrac{L}{C}}$$
+$$U_C = \dfrac{1}{\jo C} \cdot \dfrac{U_0}{r} e^{\jo t} \bigg|_{\omega = \omega_0} = \dfrac{1}{r} \sqrt{\dfrac{L}{C}} U_0 e^{j(\omega t - \dfrac{\pi}{2})}, \quad \dfrac{1}{\omega_0 Cr} = \dfrac{1}{r} \sqrt{\dfrac{L}{C}}$$
+
+Получается, что напряжения $U_L$ и $U_C$ противофазны и равны по модулю, т.е. компенсируют друг друга: $U_L (\omega_0) = - U_C (\omega_0)$. Рассмотрим добротность:
+$$\dfrac{\omega_0 L}{r} = \dfrac{1}{\omega_0 Cr} = \dfrac{1}{r} \sqrt{\dfrac{L}{C}} = Q,\quad ~\rightarrow~?$$
+Покажем, что $Q = 2\pi \dfrac{\text{колебательная энергия в контуре}}{\text{энергия, теряемая за период}}$:
+$$Q = 2\pi \dfrac{W}{P_{\text{mean}} T} = \omega_0 \dfrac{W}{P_{\text{mean}}} = \omega_0 \dfrac{\dfrac{L}{2} \bigg( \dfrac{U_0}{r} \bigg)^2}{U_0^2 / (2r)} = \dfrac{\omega_0 L}{r} = \dfrac{1}{r} \sqrt{\dfrac{L}{C}}.$$
+
+Здесь $P_{\text{mean}}$ --- средняя за период мощность (из-за усреднения появляется деление на 2), $Q$ --- добротность контура (в английской литературе "quality factor").
+
+Видно, что при $\omega = \omega_0 \rightarrow |U_L| = |U_C| = U_0 Q$, т.е. на реактивных элементах напряжение возрастает в $Q$ раз (именно по этой причине последовательный резонанс называется "резонансом напряжений"). Напомним: 
+$$Q = \dfrac{\omega_0 L}{r} = \dfrac{1}{\omega_0 Cr}.$$
+Найдём частотную характеристику $K(\jo)$:
+$$\widetilde{i}(\jo) = \widetilde{K}(\jo) U(\omega), \quad \widetilde{i}(\jo) = \widetilde{I}(\omega) e^{j(\varphi(\omega) + \omega t)};$$
+$$I(\omega) = |\widetilde{K}(\jo)| U_0 = \bigg| \dfrac{1}{r + jX}\bigg| U_0 = \dfrac{r}{\sqrt{r^2 + \bigg(\dfrac{\omega^2 LC - 1}{\omega C} \bigg)^2}} \cdot \dfrac{U_0}{r}.$$
+Очевидно, $|I|_max = \dfrac{U_0}{r}$, при $r = \dfrac{\omega^2 LC - 1}{\omega C}$ амплитуда падает в $\sqrt{2}$ раза. Какова расстройка $(\omega - \omega_0)$ при таком сопротивлении?
+$$\omega rC = \omega^2 LC - 1,~\text{введём замену } x = \dfrac{\omega}{\omega_0} \Rightarrow x^2 - \dfrac{1}{Q} x - 1 = 0;$$
+
+\begin{minipage}{6cm}
+\centering
+\includegraphics[scale=0.7]{../section01/images/I_o_RLC_lin/I_o_RLC_lin.png} % нужна картинка
+\end{minipage} \hfill   
+\begin{minipage}{10cm}
+Решением этого уравнения будут:
+$$x = \dfrac{1}{2Q} \pm \sqrt{1 + \dfrac{1}{4 Q^2}} \simeq  \dfrac{1}{2Q} \pm \bigg( 1 + \dfrac{1}{2 Q^2}\bigg) = \dfrac{\omega_0 \pm \delta \omega}{\omega_0}.$$
+Данное приближение верно при $Q \gg 1$. Тогда, полная ширина на "полувысоте"{} (корректнее, на $1/\sqrt{2}$ высоты): $\Delta \omega = 2\delta \omega$ и $Q = \dfrac{\omega_0}{\Delta \omega}$. Таким образом мы получили ещё один способ нахождения добротности по ширине резонансной кривой.
+\end{minipage}
+
+\begin{minipage}{6cm}
+\centering
+\includegraphics[scale=0.7]{../section01/images/phi_o_RLC_lin/phi_o_RLC_lin.png} % нужна картинка
+\end{minipage} \hfill   
+\begin{minipage}{10cm}
+Исследуем поведение фазовой кривой:
+\begin{itemize}
+\item При $\omega \rightarrow 0$ виден ёмкостный характер импеданса (ток бежит "вперёд"{} напряжения).
+\item При $\omega = \omega_0$ импеданс чисто активный.
+\item При $\omega \rightarrow \infty$ виден индуктивный характер импеданса (ток "отстаёт"{} от напряжения).
+\end{itemize}
+\end{minipage}
+Общий вид зависимости фазы от частоты:
+$$\tan \varphi = \dfrac{\omega^2 LC - 1}{\omega rC} = \dfrac{x^2 - 1}{x} \cdot Q.$$
+Значит, при $Q \rightarrow \infty$, $\varphi(\omega)$ приближается к "ступеньке"{} и такой контур называется "идеальным".
+
 \subsection{Параллельный колебательный контур.}
 
+\begin{minipage}{6cm}
+\centering
+\includegraphics[scale=0.7]{../section01/images/RLC_par/RLC_par.png} % нужна картинка
+\end{minipage} \hfill   
+\begin{minipage}{10cm}
+Пусть $Z(\jo)$ --- импеданс контура.
+$$\dfrac{1}{Z} = \jo C + \dfrac{1}{r + \jo L},\quad Z = \dfrac{r + \jo L}{(1 - \omega^2 LC) + \jo rC}.$$
+При $r = 0$ (т.е. в случае "идеального"{} контура), $Z$ имеет максимум при $\omega = \omega_0 = \dfrac{1}{\sqrt{LC}}$ (и ток во внешней цепи минимален).
+
+При $r \neq 0$, но с $Q \gg 1$, максимум сдвигается на $\delta \omega$:
+\end{minipage}
+$$\delta \omega = \omega_{\text{рез}} - \omega_0 ~(\text{здесь } \omega_{\text{рез}} \equiv \omega_{max}),~\text{причём}~\boxed{\dfrac{\delta \omega}{\omega_0} \simeq -\dfrac{1}{2 Q^2}}$$
+\textbf{Упражнение 4.} Докажите последнее соотношение.
+
+На резонансной частоте $\omega_{\text{рез}} = \omega_0 + \delta \omega \simeq \omega_0$ импеданс контура равен:
+$$|Z| = \bigg( \dfrac{r^2 (1 + Q^2)}{(1 - \omega^2 LC)^2 - 1/Q^2} \bigg)^{1/2} \bigg|_{\omega=\omega_{\text{рез}} \sim \omega_0} \simeq Q^2 r.$$
+
+Таким образом, на резонансе сопротивление параллельного контура возрастает в $Q^2$ раз, по сравнению с собственным активным сопротивлением! Какого поведение токов в ветвях контура?
+
+Падение напряжения на контуре $U = Z i_0$, где $i_0$ идёт с генератора тока:
+\begin{equation*}
+ \begin{cases}
+   i_C |_{\omega \sim \omega_0} = \dfrac{r Q^2}{1/(\jo_0 C)} i_0 = \jo_0 rC Q^2 i_0 &= Q i_0 e^{j \dfrac{\pi}{2}} \\ 
+   i_L |_{\omega \sim \omega_0} = \dfrac{r Q^2}{\jo_0 L} i_0 \Rightarrow &= Q i_0 e^{-j \dfrac{\pi}{2}}
+ \end{cases}
+\end{equation*}
+
+Отсюда видно, что токи ветвей увеличились в $Q$ раз, но они противофазны, поэтому ток во внешней цепи мал. Данное явление называется "резонансом токов".
+
+Для $Q \rightarrow \infty$  контур имеет $r\rightarrow 0$ и тока во внешней цепи нет, т.е. источник можно отключить! % или сопротивление стремится к бесконечности?
+
+Исследуем фазовую характеристику: 
+$$\widetilde{U} = i \widetilde{Z}(\jo), \quad \tan\varphi = \dfrac{\text{Im} \widetilde{Z}}{\text{Re}\widetilde{Z}}$$
+Перепишем импеданс в форме:
+$$\widetilde{Z} = \dfrac{(r + \jo L) \cdot \dfrac{1}{\jo C}}{(r + \jo L) + \dfrac{1}{\jo C}} \simeq [r \ll \omega L \Rightarrow Q \gg 1] \simeq \dfrac{L/C}{r + j(\omega L - \dfrac{1}{\omega C})} \Rightarrow \boxed{\tan \varphi = Q \bigg[ \dfrac{\omega}{\omega_0} - \dfrac{\omega_0}{\omega}\bigg]}$$
+\textbf{Упражнение 5.} Постройте график $\varphi(\omega)$, причём:
+\begin{itemize}
+\item Слева от резонанса $\omega < \omega_0$, $\varphi \rightarrow -\dfrac{\pi}{2}$ при $\omega \rightarrow 0$ (ёмкостный характер импеданса);
+
+\item Справа от резонанса $\omega > \omega_0$, $\varphi \rightarrow \dfrac{\pi}{2}$ при $\omega \rightarrow \infty$ (индуктивный характер импеданса).
+\end{itemize}
+
 \subsection{Осциллятор в радиофизике.}
+
+Колебательные контуры в \textit{п.8 и п.9} это частные случаи очень важного "элементарного звена"{} в радиофизике и в физике вообще. По этой причине его свойства следует знать досконально. Общепринятая терминология --- "осциллятор". Линейный осциллятор описывается дифференциальным уравнением второго порядка.
+
+Для колебательного контура мы имели: $L \dfrac{di}{dt} + i r + \dfrac{1}{C} \displaystyle \int i \, dt = U$, вводя замену $q = \dfrac{di}{dt}$ или после дифференцирования мы получим уравнение в стандартной форме:
+$$i'' + 2\delta i' + \omega_0^2i = f(t),$$
+где $\delta = \dfrac{r}{2L}$ --- показатель затухания, $\omega_0$ --- собственная частота и $f(t) \rightarrow \dfrac{U'(t)}{L}$ --- внешнее воздействие. 
+
+Большой класс измерительных приборов, например, акселерометр, гравиметр, сейсмограф и др., имеют в качестве основного рабочего элемента осциллятор в виде упругой закрепленной массы.
+
+\begin{minipage}{6cm}
+\centering
+\includegraphics[scale=0.7]{../section01/images/oscillator/oscillator.png} % нужна картинка
+\end{minipage} \hfill   
+\begin{minipage}{10cm}
+Уравнение движения для $x(t)$ в стандартной форме это тоже самое с заменой:
+$$\delta = \dfrac{R}{2L} \rightarrow \dfrac{h}{2m}$$
+$$\omega_0 = \dfrac{1}{\sqrt{LC}} \rightarrow \sqrt{\dfrac{k}{m}}$$
+$$Q = \dfrac{1}{r} \sqrt{\dfrac{L}{C}} \rightarrow \dfrac{1}{h} \sqrt{km}$$
+\end{minipage}
+Получаем $x'' + 2\delta x' + \omega_0^2x = f(x), f(x) = \dfrac{F(x)}{m}.$
+
+Осциллятор (также как простейшие $RC$- и $RL$-цепочки) --- инерционный элемент. Его характерное время релаксации $\tau^* = 1/\delta = 2Q/\omega_0$.
+
+Явление резонанса в \textit{п.8, п.9} описано как стационарный (установившийся) процесс с характерными чертами. Инерционность обуславливает наличие также нестационарных (или "переходных") процессов в поведении осциллятора. Расчет переходных режимов нельзя провести методом К.А.; подходит метод преобразования Лапласа \textit{п.7}. В радиофизике часто используют также "метод медленно меняющихся амплитуд"(ММА).
 
 \subsection{Метод ММА --- в гармоническом приближении.}
 
